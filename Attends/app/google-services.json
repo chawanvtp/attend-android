@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "577105963280",
+    "firebase_url": "https://swu-attends.firebaseio.com",
+    "project_id": "swu-attends",
+    "storage_bucket": "swu-attends.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577105963280:android:b80c708fd740ffd8",
+        "android_client_info": {
+          "package_name": "com.seaweed.attends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577105963280-36g8tlcqmh0thbh8vrucmeq32p2p779c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.seaweed.attends",
+            "certificate_hash": "d7a7cd99e2c37a5197d4c02d9f1db02c05b2cb8f"
+          }
+        },
+        {
+          "client_id": "577105963280-8vrvrnodkb91fimelo56stsrotolafk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGZ3W7RWOXK4BVgOnkjx639rTGcacZVqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577105963280-8vrvrnodkb91fimelo56stsrotolafk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

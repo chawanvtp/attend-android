@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Attends</string>
+    <string name="tv_login">Login</string>
+    <string name="et_username">Username</string>
+    <string name="et_password">Password</string>
+    <string name="btn_reset">Reset</string>
+    <string name="btn_submit">Submit</string>
+    <string name="header_name">Name</string>
+    <string name="header_attendants">Attendants</string>
+    <string name="header_absences">Absences</string>
+    <string name="header_total">Total</string>
+</resources>

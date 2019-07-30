@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#ddd"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:padding="15dp">
+
+    <!--<ImageView-->
+    <!--android:id="@+id/imgFood"-->
+    <!--android:layout_width="150dp"-->
+    <!--android:layout_height="120dp"-->
+    <!--app:srcCompat="@drawable/french_fries" />-->
+
+    <TextView
+            android:id="@+id/tvClassID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="tvClassID"
+            android:textSize="20sp"/>
+
+    <TextView
+            android:id="@+id/tvClassAttendants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="tvClassAttendants"
+            android:textSize="20sp"/>
+
+    <TextView
+            android:id="@+id/tvClassAbsences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="tvClassAbsences"
+            android:textSize="20sp"/>
+
+    <TextView
+            android:id="@+id/tvClassTotalStudents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="tvClassTotalStudents"
+            android:textSize="20sp"/>
+
+</LinearLayout>
