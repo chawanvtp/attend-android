@@ -127,7 +127,7 @@ class ClassActivity : AppCompatActivity() {
 //                Log.d(TAG, "onChildAdded:" + dataSnapshot.key!!)
                 val key = (dataSnapshot.key).toString()
                 val attendance = (dataSnapshot.child("attendance").value).toString()
-                val absence = (attendance.toInt() - courseTotalClasses.toInt()).toString()
+                val absence = (courseTotalClasses.toInt() - attendance.toInt()).toString()
 //                Log.d(TAG, "classRef key:" + key!!)
 //                Log.d(TAG, "classRef shot:" + attendance!!)
                 var studentData = StudentSummary( key, attendance, absence)
@@ -214,7 +214,7 @@ class ClassActivity : AppCompatActivity() {
             var inflator = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             var classView = inflator.inflate(R.layout.class_entry, null)
             classView.tvClassID.text = classData.id!!
-            classView.tvClassAttendants.text = "DATE: "+classData.date!!
+            classView.tvClassAttendants.text = classData.date!!
             classView.tvClassAbsences.text = "ATTENDANTS: "+classData.attendants!!
             classView.tvClassTotalStudents.text = "TOTAL STUDENTS: "+classData.total!!
 
