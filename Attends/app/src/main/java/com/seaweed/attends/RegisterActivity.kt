@@ -16,25 +16,24 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     // DECLARE - Instances
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.register_main)
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
 //        SharedPreferences of LOGIN
-        initLogin()
+//        initLogin()
 
         // get reference to all views
         var et_user_name = findViewById(R.id.et_user_name) as EditText
         var et_password = findViewById(R.id.et_password) as EditText
         var btn_reset = findViewById(R.id.btn_reset) as Button
         var btn_submit = findViewById(R.id.btn_submit) as Button
-        var signup_btn = findViewById(R.id.signupBtn) as? TextView
 
         btn_reset.setOnClickListener {
             // clearing user_name and password edit text views on reset button click
@@ -47,17 +46,21 @@ class MainActivity : AppCompatActivity() {
             val user_name = et_user_name?.text;
             val password = et_password?.text;
 //            Toast.makeText(this@MainActivity, user_name , Toast.LENGTH_LONG).show()
-            signInWithEmail(email = user_name.toString(), password = password.toString())
-            // your code to validate the user_name and password combination
+            if(user_name.toString() != "" && password.toString() != "") {
+                signupBtnClicked(email = user_name.toString(), password = password.toString())
+            }else{
+                Toast.makeText(baseContext, "REGISTER failed.",
+                    Toast.LENGTH_SHORT).show()
+            }
+                // your code to validate the user_name and password combination
             // and verify the same
 
         }
 
-        signup_btn!!.setOnClickListener{
-            val intentReg = Intent(this, RegisterActivity::class.java)
-            startActivity(intentReg)
-            Log.d(TAG, "signInWithEmail:success")
-        }
+//        signupBtn.setOnClickListener{
+//            val intent = Intent(this, RegisterActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 
@@ -75,7 +78,6 @@ class MainActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
-                    createLoginSession(user, password)
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -92,6 +94,7 @@ class MainActivity : AppCompatActivity() {
     public fun signupBtnClicked(email: String?, password: String?){
         auth.createUserWithEmailAndPassword(email!!, password!!)
             .addOnCompleteListener(this) { task ->
+
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "createUserWithEmail:success")
@@ -101,9 +104,9 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Toast.makeText(baseContext, "REGISTER Failed.",
                         Toast.LENGTH_SHORT).show()
-                    updateUI(null)
+//                    updateUI(null)
                 }
 
                 // ...

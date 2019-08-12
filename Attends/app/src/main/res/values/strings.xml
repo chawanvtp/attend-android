@@ -9,4 +9,28 @@
     <string name="header_attendants">Attendants</string>
     <string name="header_absences">Absences</string>
     <string name="header_total">Total</string>
+    <string name="textEdit">textEdit</string>
+    <string name="textView">textView</string>
+
+    <!-- home_main String(s) -->
+    <string name="addCourseBtn">ADD COURSE</string>
+
+    <!-- class_main String(s) -->
+    <string name="tvCourseName">CourseName</string>
+    <string name="tvCourseTotalClasses">CourseTotalClasses</string>
+    <string name="tvCourseNumStudents">CourseNumStudents</string>
+    <string name="addClassBtn">CREATE CLASS</string>
+    <string name="courseQR">courseQR</string>
+
+    <!-- course_summary String(s) -->
+    <string name="tvClassDate">ClassDate</string>
+    <string name="tvClassAttendants">ClassAttendants</string>
+    <string name="tvClassTotalStudents">ClassTotalStudents</string>
+    <string name="classQR">classQR</string>
+
+    <string-array name="status_list">
+        <item>Attended</item>
+        <item>Absent</item>
+    </string-array>
+
 </resources>

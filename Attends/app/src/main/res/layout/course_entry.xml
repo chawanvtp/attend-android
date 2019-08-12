@@ -26,15 +26,16 @@
             android:id="@+id/tvCourseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
             android:text="tvCourseName"
+            android:textStyle="bold"
             android:textSize="20sp"/>
 
     <TextView
             android:id="@+id/tvCourseNumStudents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
             android:text="tvCourseNumStudents"
             android:textSize="20sp"/>
 
@@ -42,7 +43,7 @@
             android:id="@+id/tvCourseTotalClasses"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
             android:text="tvCourseTotalClasses"
             android:textSize="20sp"/>
 

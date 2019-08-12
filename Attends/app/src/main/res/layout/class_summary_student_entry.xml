@@ -15,37 +15,38 @@
     <!--app:srcCompat="@drawable/french_fries" />-->
 
     <TextView
-            android:id="@+id/tvStudentTotalID"
+            android:id="@+id/tvStudentID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="tvStudentID"
             android:textStyle="bold"
-            android:text="tvStudentTotalID"
             android:textSize="20sp"/>
 
     <TextView
-            android:id="@+id/tvStudentTotalName"
+            android:id="@+id/tvStudentName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textStyle="bold"
-            android:text="tvStudentTotalName"
+            android:text="tvStudentName"
             android:textSize="20sp"/>
 
-    <TextView
-            android:id="@+id/tvStudentTotalAttend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="tvStudentTotalAttend"
-            android:textSize="20sp"/>
+    <!--<TextView-->
+            <!--android:id="@+id/tvStudentStatus"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="left"-->
+            <!--android:text="tvStudentStatus"-->
+            <!--android:textSize="20sp"/>-->
 
-    <TextView
-            android:id="@+id/tvStudentTotalAbsence"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="tvStudentTotalAbsence"
-            android:textSize="20sp"/>
+    <Spinner
+        android:id="@+id/spinnerStudentStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinner"
+        android:layout_margin="10dp"
+        android:entries="@array/status_list" />
+
 
 </LinearLayout>

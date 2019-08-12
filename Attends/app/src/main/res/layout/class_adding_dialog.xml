@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+    <EditText
+            android:id="@+id/dialogDate"
+            android:hint="Enter Date ( ex. 31-8-2019 )"
+            android:inputType="textPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    <!--<EditText-->
+            <!--android:id="@+id/dialogEmailEt"-->
+            <!--android:hint="Enter Email"-->
+            <!--android:inputType="textEmailAddress"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--<EditText-->
+            <!--android:id="@+id/dialogPasswEt"-->
+            <!--android:hint="Enter Password"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+    <!--<CalendarView-->
+            <!--android:id="@+id/dialogAddClassCalendar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="50dp"-->
+            <!--android:layout_marginLeft="50dp"-->
+            <!--android:layout_marginRight="50dp"/>-->
+    <Button
+            android:id="@+id/dialogSetDateClassBtn"
+            android:text="Set DATE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@android:color/holo_blue_light"/>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+        <Button
+                android:id="@+id/dialogAddClassConfirmBtn"
+                android:text="Confirm"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        <Button
+                android:id="@+id/dialogAddClassCancelBtn"
+                android:text="Cancel"
+                style="@style/Base.Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

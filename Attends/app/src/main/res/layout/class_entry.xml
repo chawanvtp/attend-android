@@ -23,26 +23,27 @@
             android:textSize="20sp" tools:visibility="invisible"/>
 
     <TextView
-            android:id="@+id/tvClassAttendants"
+            android:id="@+id/tvClassDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="tvClassAttendants"
+            android:text="tvClassDate"
+            android:textStyle="bold"
             android:textSize="20sp"/>
 
     <TextView
-            android:id="@+id/tvClassAbsences"
+            android:id="@+id/tvClassAttendants"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="tvClassAbsences"
+            android:gravity="left"
+            android:text="tvClassAttendants"
             android:textSize="20sp"/>
 
     <TextView
             android:id="@+id/tvClassTotalStudents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
             android:text="tvClassTotalStudents"
             android:textSize="20sp"/>
 

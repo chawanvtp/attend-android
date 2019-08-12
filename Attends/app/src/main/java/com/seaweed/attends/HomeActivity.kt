@@ -1,5 +1,6 @@
 package com.seaweed.attends
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.home_main.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.course_adding_dialog.view.*
 import kotlinx.android.synthetic.main.course_entry.view.*
 import kotlin.collections.ArrayList
 
@@ -43,7 +45,7 @@ class HomeActivity : AppCompatActivity() {
                 if(currentUser != null){
                     Log.d(TAG, "currentUser: "+currentUser.uid)
                 }
-        coursesRef = database.getReference("Lecturers/nKfJFwgQ7BhwwCCJMLcvPNC9ej03/myCourses")
+        coursesRef = database.getReference("Lecturers/${(currentUser!!.uid).toString()}/myCourses")
 
 //        val editor = getSharedPreferences("myPref", Context.MODE_PRIVATE).edit()
         val reader = getSharedPreferences("myPref", Context.MODE_PRIVATE)
@@ -74,7 +76,7 @@ class HomeActivity : AppCompatActivity() {
                         queryCourseByID(shot)
 //                        var course = Course(shot, "a", "b", "c")
 //                        coursesList.add(course)
-                        Log.d(TAG, "onChildAdded coursesList:" + coursesList.size!!)
+                        Log.d(TAG, "onChildAdded coursesList:" + coursesList.size)
 //                        adapter = CourseAdapter(this@HomeActivity, coursesList)
 //
 //                        gvCourses.adapter = adapter
@@ -108,8 +110,8 @@ class HomeActivity : AppCompatActivity() {
 //                        val selectedItem = parent.getItemAtPosition(position).toString()
                         val courseID = view.tvCourseID.text.toString()
                         val courseName = view.tvCourseName.text.toString()
-                        val courseNumStudents = view.tvCourseNumStudents.text.toString()
-                        val courseTotalClasses = view.tvCourseTotalClasses.text.toString()
+                        val courseNumStudents = (view.tvCourseNumStudents.text.toString()).substring(11)
+                        val courseTotalClasses = (view.tvCourseTotalClasses.text.toString()).substring(16)
                         // Display the selected/clicked item text and position on TextView
                         Log.d(TAG,"GridView item clicked : $courseID \nAt index position : $position")
                         val intent = Intent(this@HomeActivity,ClassActivity::class.java)
@@ -122,7 +124,63 @@ class HomeActivity : AppCompatActivity() {
                 }
 //    ------    END GridView onClickListener ------
 
+        //------ ADD COURSE - click to show dialog ------
+        addCourseBtn.setOnClickListener {
+            //Inflate the dialog with custom view
+            val mDialogView = LayoutInflater.from(this).inflate(R.layout.course_adding_dialog, null)
+            //AlertDialogBuilder
+            val mBuilder = android.support.v7.app.AlertDialog.Builder(this)
+                .setView(mDialogView)
+                .setTitle("ADD COURSE")
+            //show dialog
+            val  mAlertDialog = mBuilder.show()
+            //login button click of custom layout
+            mDialogView.dialogAddCourseConfirmBtn.setOnClickListener {
+                //dismiss dialog
+                mAlertDialog.dismiss()
+                //get text from EditTexts of custom layout
+                val name = mDialogView.dialogNameEt.text.toString()
+                val sec = mDialogView.dialogSectionEt.text.toString()
+                val semester = mDialogView.dialogSemesterEt.text.toString()
+                if (currentUser != null && name != "" && sec != "" && semester != "") {
+                    addCourseBtnClicked(currentUser.uid, name, sec, semester)
+                }
+                //set the input text in TextView
+                Log.d(TAG, "Name:"+ name +"\nSec: "+ sec +"\nSemester: "+ semester)
             }
+            //cancel button click of custom layout
+            mDialogView.dialogAddCourseCancelBtn.setOnClickListener {
+                //dismiss dialog
+                mAlertDialog.dismiss()
+            }
+        }
+        //------ END == ADD COURSE - click to show dialog ------
+    }
+
+    private fun addCourseBtnClicked(id: String, name: String, sec: String, semester: String){
+        val database = database.reference
+        val newCourseKey = database.child("Courses").push().key
+        if (newCourseKey != null) {
+            database.child("Courses").child(newCourseKey).child("section").setValue(sec)
+            database.child("Courses").child(newCourseKey).child("name").setValue("$semester  |  $name")
+            database.child("Courses").child(newCourseKey).child("summary/totalClasses").setValue(0)
+            database.child("Courses").child(newCourseKey).child("activation/consumption").setValue(999999)
+            database.child("Courses").child(newCourseKey).child("activation/currentClass").setValue("none")
+            database.child("Courses").child(newCourseKey).child("activation/latitude").setValue(0)
+            database.child("Courses").child(newCourseKey).child("activation/longitude").setValue(0)
+            database.child("Lecturers/$id/myCourses").addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    var count = (dataSnapshot.childrenCount).toString()
+                    database.child("Lecturers/$id/myCourses/$count").setValue(newCourseKey)
+                    Log.d(TAG, count)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(baseContext, "Failed to load comments.",Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+    }
 
     private fun queryCourseByID(courseID: String?){
         var courseName = ""
@@ -221,8 +279,8 @@ class HomeActivity : AppCompatActivity() {
             var courseView = inflator.inflate(R.layout.course_entry, null)
             courseView.tvCourseID.text = course.id!!
             courseView.tvCourseName.text = course.name!!
-            courseView.tvCourseNumStudents.text = course.numStudents!!
-            courseView.tvCourseTotalClasses.text = course.total!!
+            courseView.tvCourseNumStudents.text = "Students : " + course.numStudents!!
+            courseView.tvCourseTotalClasses.text = "Total Classes : " + course.total!!
 
             return courseView
         }
