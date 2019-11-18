@@ -183,6 +183,7 @@ class ClassActivity : AppCompatActivity() {
                 val absence = (courseTotalClasses.toInt() - attendance.toInt()).toString()
 //                Log.d(TAG, "classRef key:" + key!!)
 //                Log.d(TAG, "classRef shot:" + attendance!!)
+
                 var studentData = StudentSummary( key, name, attendance, absence)
                 studentSummaryList.add(studentData)
                 studentAdapter = StudentSummaryAdapter(this@ClassActivity, studentSummaryList)
@@ -236,6 +237,30 @@ class ClassActivity : AppCompatActivity() {
         }
 
         database.child("Courses/$courseID/records/$classID/date").setValue(date)
+        database.child("Courses/$courseID/summary/totalClasses").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                var name = dataSnapshot.child("name").value.toString()
+                var totalClasses = (dataSnapshot.value).toString().toInt() + 1
+                database.child("Courses/$courseID/summary/totalClasses").setValue(totalClasses)
+                tvCourseTotalClasses.text = "Total Classes: "+totalClasses
+
+                for (currentIndex in 0 until studentSummaryList.size){
+                    studentSummaryList[currentIndex].absence = ((studentSummaryList[currentIndex].absence).toInt() + 1).toString()
+                }
+                studentAdapter = StudentSummaryAdapter(this@ClassActivity, studentSummaryList)
+                gvStudentSummary.adapter = studentAdapter
+                return
+            }
+
+        })
+
+//        database.child("Courses/$courseID/summary/totalClasses").setValue(date)
 
         for(x in 0 until studentSummaryList.size){
             database.child("Courses/$courseID/records/$classID/studentsList/${studentSummaryList[x].id}/status").setValue("Absent")

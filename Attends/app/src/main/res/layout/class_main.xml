@@ -65,13 +65,13 @@
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/gvClasses" app:layout_constraintVertical_bias="0.958"/>
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_launcher_background"
+            android:layout_width="258dp"
+            android:layout_height="191dp" app:srcCompat="@drawable/ic_launcher_background"
             android:id="@+id/qrCourse" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/tvCourseName" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/gvClasses" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.769"
+            app:layout_constraintHorizontal_bias="0.496" app:layout_constraintVertical_bias="0.652"
             android:contentDescription="@string/courseQR"/>
     <Button
             android:text="@string/addClassBtn"

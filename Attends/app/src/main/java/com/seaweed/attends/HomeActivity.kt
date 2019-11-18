@@ -209,7 +209,18 @@ class HomeActivity : AppCompatActivity() {
 
                                 //        ADD Courses from query
                                 var course = Course( courseID.toString(), courseName, courseNumStudents, courseTotalClasses)
-                                coursesList.add(course)
+                                var isExist = false
+                                for (currentIndex in 0 until coursesList.size){
+                                    if(coursesList[currentIndex].id === course.id){
+                                        coursesList[currentIndex] = course
+                                        isExist = true
+                                    }
+                                }
+
+                                if(!isExist){
+                                    coursesList.add(course)
+                                }
+
                                 Log.d(TAG, "onChildAdded coursesList:" + coursesList.size!!)
                                 adapter = CourseAdapter(this@HomeActivity, coursesList)
 
